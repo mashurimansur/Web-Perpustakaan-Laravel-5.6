@@ -1,23 +1,11 @@
-@extends('admin.layouts.main')
-
-@section('title', 'Log Transaksi')
-	
-@section('contents')
-	<ol class="breadcrumb bc-3">
-		<li>
-			<a href="#"><i class="entypo-home"></i>Home</a>
-		</li>
-		<li class="active">
-			<strong>Log Transaksi</strong>
-		</li>
-	</ol>
-			
-	<h2>Log Transaksi</h2>
-
-	<br />
-	<a href="{{ route('transaksi_pdf') }}" class="btn btn-primary">Cetak</a>
-	<br>
-	<br>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cetak Transaksi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<h1>Data Transaksi</h1>
 	<div id="myDiv">
 		<table class="table table-bordered datatable">
 			<thead>
@@ -43,4 +31,7 @@
 			</tbody>
 		</table>
 	</div>
-@endsection
+
+</body>
+
+</html>

@@ -71,6 +71,7 @@ Route::group(['namespace' => 'Admin'], function () {
 		//Transaksi
 		Route::group(['prefix' => 'transaksi'], function(){
 			Route::get('/', 'TransaksiController@index')->name('transaksi');
+			Route::get('/pdf', 'TransaksiController@pdf')->name('transaksi_pdf');
 		});
 	});
 });
