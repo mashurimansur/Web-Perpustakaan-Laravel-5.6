@@ -7,8 +7,8 @@
 <body>
 	<h1>Data Transaksi</h1>
 	<div id="myDiv">
-		<table class="table table-bordered datatable">
-			<thead>
+		<table class="table">
+			<thead class=".thead-dark">
 				<tr>
 					<th>No</th>
 					<th>Nama Peminjam</th>
@@ -20,7 +20,7 @@
 			<tbody>
 				<?php $no = 1; ?>
 				@foreach($transaksi as $t)
-					<tr class="odd gradeX">
+					<tr>
 						<td>{{ $no++ }}</td>
 						<td>{{ $t->name }}</td>
 						<td>{{ $t->judul }}</td>
