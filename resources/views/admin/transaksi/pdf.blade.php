@@ -2,12 +2,11 @@
 <html>
 <head>
     <title>Cetak Transaksi</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-	<h1>Data Transaksi</h1>
+	<h1>Data Transaksi Buku</h1>
 	<div id="myDiv">
-		<table class="table">
+		<table class="table" border="1" cellspacing="0" cellpadding="2" width="100%">
 			<thead class=".thead-dark">
 				<tr>
 					<th>No</th>
