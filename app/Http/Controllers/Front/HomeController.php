@@ -124,6 +124,8 @@ class HomeController extends Controller
 
 		$data['buku'] = Buku::find($id);
 
+		$data['check'] = Transaksi::where('id_user', Auth::id())->where('id_buku', $id)->where('tgl_kembali', 'Masih dipinjam')->get();
+
     	return view('front.buku.detail', $data);
     }
 

@@ -57,7 +57,12 @@
 							<td>{{ $buku->stok }}</td>
 						</tr>
 					</table>
-					<a href="{{ route('home_pinjam', ['id' => $buku->id]) }}" class="btn btn-primary">Pinjam Buku</a>
+					
+					@if (count($check) > 0)
+						<button disabled="disabled" class="btn btn-danger">Buku sudah dipinjam</button>
+					@else
+						<a href="{{ route('home_pinjam', ['id' => $buku->id]) }}" class="btn btn-primary">Pinjam Buku</a>
+					@endif
 				</div>
 			</div>
 		</div>
