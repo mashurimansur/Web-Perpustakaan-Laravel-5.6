@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Buku;
-use App\Transaksi;
+use App\Models\Buku;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB, PDF;
@@ -13,7 +13,8 @@ class TransaksiController extends Controller
     {
         $data['transaksi'] = Transaksi::with('buku', 'user')->get(); 
         
-        return view('admin.transaksi.index', $data);
+        // return view('admin.transaksi.index', $data);
+        return response($data);
     }
 
     public function pdf()

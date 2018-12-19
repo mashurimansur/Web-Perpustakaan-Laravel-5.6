@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Buku;
+use App\Models\Buku;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;

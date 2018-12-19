@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Buku, App\User;
+use App\Models\Buku;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
