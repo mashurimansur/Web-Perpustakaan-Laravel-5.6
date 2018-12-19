@@ -60,13 +60,9 @@ class HomeController extends Controller
 		$data['jenis'] = $jenis;
 		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
 
-		$data['transaksi'] = DB::table('transaksi')
-			->join('buku', 'transaksi.id_buku', '=', 'buku.id')
-            ->select('transaksi.*', 'buku.judul', 'buku.id as id_buku', 'buku.image', 'buku.jenis', 'buku.pengarang', 'buku.penerbit', 'buku.tahun')
-			->where('id_user', Auth::user()->id)
-			->where('tgl_kembali', 'Masih dipinjam')
-			->get();
+		$data['transaksi'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->with('buku', 'user')->get();
 
+		// return response($data);
     	return view('front.transaksi.index', $data);
     }
  

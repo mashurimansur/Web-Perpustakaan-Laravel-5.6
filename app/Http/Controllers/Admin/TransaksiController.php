@@ -13,8 +13,7 @@ class TransaksiController extends Controller
     {
         $data['transaksi'] = Transaksi::with('buku', 'user')->get(); 
         
-        // return view('admin.transaksi.index', $data);
-        return response($data);
+        return view('admin.transaksi.index', $data);
     }
 
     public function pdf()

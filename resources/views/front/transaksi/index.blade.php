@@ -26,13 +26,13 @@
 							<div class="blog-post">	
 								<div class="post-thumb">
 									<a href="#">
-										<img src="{{ asset('uploaded/buku') }}/{{ $t->image }}" style="width: 300px; height: 350px" class="img-rounded" />
+										<img src="{{ asset('uploaded/buku') }}/{{ $t->buku->image }}" style="width: 300px; height: 350px" class="img-rounded" />
 									</a>
 								</div>
 								
 								<div class="post-details">
 									<h3>
-										<a href="#">{{ $t->judul }}</a>
+										<a href="#">{{ $t->buku->judul }}</a>
 									</h3>
 									<div class="post-meta">
 										<div class="meta-info">
