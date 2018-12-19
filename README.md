@@ -1,6 +1,6 @@
 # Sistem Informasi Perspustakan Menggunakan Laravel 5
 ini adalah sistem informasi perpustakaan berbasis web yang menggunakan Laravel 5.6
-pastikan PHP kalian >7.0
+pastikan PHP kalian >7.0 dan sudah mengintall composer
 
 ## Table of Contents
 
