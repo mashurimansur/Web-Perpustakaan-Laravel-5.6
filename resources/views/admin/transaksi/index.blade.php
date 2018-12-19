@@ -34,8 +34,8 @@
 				@foreach($transaksi as $t)
 					<tr class="odd gradeX">
 						<td>{{ $no++ }}</td>
-						<td>{{ $t->name }}</td>
-						<td>{{ $t->judul }}</td>
+						<td>{{ $t->user->name }}</td>
+						<td>{{ $t->buku->judul }}</td>
 						<td>{{ $t->tgl_pinjam }}</td>
 						<td>{{ $t->tgl_kembali }}</td>
 					</tr>
