@@ -21,3 +21,16 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Models\Buku::class,function (Faker $faker){
+    return [
+        'isbn' => $faker->unique()->creditCardNumber,
+        'judul' => $faker->catchPhrase,
+        'jenis' => $faker->jobTitle,
+        'pengarang' => $faker->name,
+        'penerbit' => $faker->company,
+        'tahun' => $faker->year($max = 'now'), 
+        'stok' => 20,
+        'image' => 'cover.png'
+    ];
+});

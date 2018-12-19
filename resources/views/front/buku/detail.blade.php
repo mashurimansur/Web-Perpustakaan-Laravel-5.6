@@ -57,6 +57,7 @@
 							<td>{{ $buku->stok }}</td>
 						</tr>
 					</table>
+					<a href="{{ route('home_pinjam', ['id' => $buku->id]) }}" class="btn btn-primary">Pinjam Buku</a>
 				</div>
 			</div>
 		</div>

@@ -34,51 +34,87 @@
 									<h3>
 										<a href="#">{{ $t->buku->judul }}</a>
 									</h3>
-									<div class="post-meta">
-										<div class="meta-info">
-											<i class="entypo-comment"></i>
-											Waktu Peminjaman
-										</div>
-										<div class="meta-info">
-											<i class="entypo-calendar"></i> {{ $t->tgl_pinjam }}								
-										</div>
-									</div>
-									<div class="post-meta">
-										<div class="meta-info">
-											<i class="entypo-comment"></i>
-											Jenis Buku
-										</div>
-										<div class="meta-info">
-											<i class="entypo-book"></i> {{ $t->jenis }}								
-										</div>
-									</div>
-									<div class="post-meta">
-										<div class="meta-info">
-											<i class="entypo-comment"></i>
-											Pengarang
-										</div>
-										<div class="meta-info">
-											<i class="entypo-user"></i> {{ $t->pengarang }}								
-										</div>
-									</div>
-									<div class="post-meta">
-										<div class="meta-info">
-											<i class="entypo-comment"></i>
-											Penerbit
-										</div>
-										<div class="meta-info">
-											<i class="entypo-book"></i> {{ $t->penerbit }}								
-										</div>
-									</div>
-									<div class="post-meta">
-										<div class="meta-info">
-											<i class="entypo-comment"></i>
-											Tahun Terbit
-										</div>
-										<div class="meta-info">
-											<i class="entypo-calendar"></i> {{ $t->tahun }}								
-										</div>
-									</div>
+									<table class="table">
+										<tr>
+											<td>
+												<div class="meta-info">
+													<i class="entypo-comment"></i>
+													Waktu Peminjaman
+												</div>
+											</td>
+											<td>
+												<div class="meta-info">
+													<i class="entypo-calendar"></i> {{ $t->tgl_pinjam }}								
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="meta-info">
+													<i class="entypo-comment"></i>
+													Jenis Buku
+												</div>
+											</td>
+											<td>
+												<div class="meta-info">
+													<i class="entypo-book"></i> {{ $t->buku->jenis }}								
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="meta-info">
+													<i class="entypo-comment"></i>
+													Jenis Buku
+												</div>
+											</td>
+											<td>
+												<div class="meta-info">
+													<i class="entypo-book"></i> {{ $t->buku->jenis }}								
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="meta-info">
+													<i class="entypo-comment"></i>
+													Pengarang
+												</div>
+											</td>
+											<td>
+												<div class="meta-info">
+													<i class="entypo-user"></i> {{ $t->buku->pengarang }}								
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="meta-info">
+													<i class="entypo-comment"></i>
+													Penerbit
+												</div>
+											</td>
+											<td>
+												<div class="meta-info">
+													<i class="entypo-book"></i> {{ $t->buku->penerbit }}								
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="meta-info">
+													<i class="entypo-comment"></i>
+													Tahun Terbit
+												</div>
+											</td>
+											<td>
+												<div class="meta-info">
+													<i class="entypo-calendar"></i> {{ $t->buku->tahun }}								
+												</div>
+											</td>
+										</tr>
+									</table>
+									
 									<form action="{{ route('home_pengembalian') }}" method="POST">
 										{{ csrf_field() }}
 										<input type="hidden" name="id" value="{{ $t->id }}">
