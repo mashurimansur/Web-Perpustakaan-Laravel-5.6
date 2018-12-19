@@ -1,6 +1,7 @@
 # Sistem Informasi Perspustakan Menggunakan Laravel 5
 ini adalah sistem informasi perpustakaan berbasis web yang menggunakan Laravel 5.6
-pastikan PHP kalian >7.0
+pastikan PHP kalian >7.0 dan sudah mengintall composer. Untuk yang belum mendownload composer bisa mendowloadnya pada link dibawah ini
+https://getcomposer.org/download/
 
 ## Table of Contents
 
@@ -36,5 +37,12 @@ DB_PASSWORD=secret
 
 5. Run migrations
 ```
-~/Web-Perpustakaan-Laravel-5.6$ php artisan migrate
+~/Web-Perpustakaan-Laravel-5.6$ php artisan migrate --seed
 ```
+6. Untuk login bisa menggunakan akun
+```
+email: admin@mail.com      password: secret
+email: user@mail.com       password: secret
+email: pimpinan@mail.com   password: secret
+```
+
