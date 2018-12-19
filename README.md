@@ -36,5 +36,12 @@ DB_PASSWORD=secret
 
 5. Run migrations
 ```
-~/Web-Perpustakaan-Laravel-5.6$ php artisan migrate
+~/Web-Perpustakaan-Laravel-5.6$ php artisan migrate --seed
 ```
+6. Untuk login bisa menggunakan akun
+```
+email: admin@mail.com      password: secret
+email: user@mail.com       password: secret
+email: pimpinan@mail.com   password: secret
+```
+
