@@ -21,7 +21,6 @@
 	<table class="table table-bordered datatable" id="table-1">
 		<thead>
 			<tr>
-				<th>No</th>
 				<th>ISBN</th>
 				<th>Judul Buku</th>
 				<th>Jenis Buku</th>
@@ -36,7 +35,6 @@
 			<?php $no = 1; ?>
 			@foreach($buku as $b)
 				<tr class="odd gradeX">
-					<td>{{ $no++ }}</td>
 					<td>{{ $b->isbn }}</td>
 					<td>{{ $b->judul }}</td>
 					<td>{{ $b->jenis }}</td>
@@ -56,7 +54,16 @@
 						</form>
 					</td>
 				</tr>
-			@endforeach
-		</tbody>
-	</table>
+				@endforeach
+			</tbody>
+		</table>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="text-center">
+					<ul class="pagination">
+						{{ $buku->render() }}
+					</ul>						
+				</div>
+			</div>
+		</div>
 @endsection

@@ -158,7 +158,7 @@
 					<div class="item col-sm-4 col-xs-6 filter-design">
 						
 						<div class="portfolio-item">
-							<a href="{{ route('home_pinjam', ['id' => $b->id]) }}" class="image">
+							<a href="{{ route('home_detailbuku', ['id' => $b->id]) }}" class="image">
 								<img src="{{ asset('uploaded/buku') }}/{{ $b->image }}" class="img-rounded" style="width: 300px; height: 350px">
 								<span class="hover-zoom"></span>
 							</a>

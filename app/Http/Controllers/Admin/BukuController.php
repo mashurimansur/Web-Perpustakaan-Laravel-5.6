@@ -15,7 +15,7 @@ class BukuController extends Controller
     
     public function index()
     {
-    	$data['buku'] = Buku::all();
+    	$data['buku'] = Buku::paginate(20);
 
     	return view('admin.buku.index', $data);
     }

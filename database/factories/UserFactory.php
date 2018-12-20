@@ -23,10 +23,12 @@ $factory->define(App\User::class, function (Faker $faker) {
 });
 
 $factory->define(App\Models\Buku::class,function (Faker $faker){
+    $jenis = ['Fiksi', 'Sejarah', 'Novel', 'Cerita'];
+    $random = array_rand($jenis, 1);
     return [
-        'isbn' => $faker->unique()->creditCardNumber,
+        'isbn' => $faker->unique()->isbn13,
         'judul' => $faker->catchPhrase,
-        'jenis' => $faker->jobTitle,
+        'jenis' => $jenis[$random],
         'pengarang' => $faker->name,
         'penerbit' => $faker->company,
         'tahun' => $faker->year($max = 'now'), 

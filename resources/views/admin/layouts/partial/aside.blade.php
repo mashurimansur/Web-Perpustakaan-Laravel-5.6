@@ -26,12 +26,6 @@
 				<span>Menu</span>
 			</a>
 			<ul>
-				<li>
-					<a href="{{ route('home') }}">
-						<i class="entypo-home"></i>
-						<span>Halaman Utama</span>
-					</a>
-				</li>
 				<li {{ Request::is('admin') ? 'class=active' : '' }}>
 					<a href="{{ route('dashboard') }}">
 						<i class="entypo-gauge"></i>
