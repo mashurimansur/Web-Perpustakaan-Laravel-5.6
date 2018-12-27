@@ -32,19 +32,31 @@ class AuthServiceProvider extends ServiceProvider
 
     public function registerRole(){
         Gate::define('admin', function($user){
-            if ($user->id_role == 1) {
-                return true;
-            } else {
-                return abort(404);
-            }
+            return $user->hasAccess(['admin']);
         });
 
-        Gate::define('user', function($user){
-            if ($user->id_role == 3) {
-                return true;
-            } else {
-                return abort(404);
-            };
+        Gate::define('transaksi', function($user){
+            return $user->hasAccess(['transaksi']);
         });
+
+        Gate::define('setting', function($user){
+            return $user->hasAccess(['setting']);
+        });
+
+        // Gate::define('admin', function($user){
+        //     if ($user->id_role == 1) {
+        //         return true;
+        //     } else {
+        //         return abort(404);
+        //     }
+        // });
+
+        // Gate::define('user', function($user){
+        //     if ($user->id_role == 3) {
+        //         return true;
+        //     } else {
+        //         return abort(404);
+        //     };
+        // });
     }
 }

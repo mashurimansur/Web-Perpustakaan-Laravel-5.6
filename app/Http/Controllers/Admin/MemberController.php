@@ -14,9 +14,9 @@ class MemberController extends Controller
     
     public function index()
     {
-    	$data['member'] = User::all();
-
-    	return view('admin.member.index', $data);
+    	$member = User::with('role')->get();
+		
+    	return view('admin.member.index', compact('member'));
     }
 
     public function create()
@@ -29,7 +29,7 @@ class MemberController extends Controller
     	$buku = new User;
     	$buku->name = $r->name;
     	$buku->email = $r->email;
-    	$buku->status = $r->status;
+    	$buku->id_role = $r->id_role;
     	$buku->password = bcrypt($r->password);
 
     	//Upload File
@@ -57,7 +57,7 @@ class MemberController extends Controller
     	$buku = User::find($id);
     	$buku->name = $r->name;
     	$buku->email = $r->email;
-    	$buku->status = $r->status;
+    	$buku->id_role = $r->id_role;
 
     	if ($r->password != NULL) {
     		$buku->password = bcrypt($r->password);

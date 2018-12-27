@@ -32,7 +32,7 @@
 						<span>Dashboard</span>
 					</a>
 				</li>
-				@if(Auth::user()->status == 'Admin')
+				@if(Auth::user()->id_role == 1)
 				<li {{ Request::is('admin/buku*') ? 'class=active' : '' }}>
 					<a href="{{ route('buku') }}">
 						<i class="entypo-book"></i>
@@ -46,7 +46,7 @@
 						<span>Transaksi</span>
 					</a>
 				</li>
-				@if(Auth::user()->status == 'Admin')
+				@if(Auth::user()->id_role == 1)
 				<li {{ Request::is('admin/member*') ? 'class=active' : '' }}>
 					<a href="{{ route('member') }}">
 						<i class="entypo-user"></i>

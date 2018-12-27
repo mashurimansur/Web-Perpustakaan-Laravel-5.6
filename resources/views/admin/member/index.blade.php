@@ -37,7 +37,7 @@
 					<td width="10px">{{ $no++ }}</td>
 					<td>{{ $m->name }}</td>
 					<td>{{ $m->email }}</td>
-					<td>{{ $m->status }}</td>
+					<td>{{ $m->role->nama_role }}</td>
 					<td width="20px">
 						<a href="{{ route('member_edit', ['id' => $m->id]) }}" class="btn btn-success">Edit</a>
 					</td>

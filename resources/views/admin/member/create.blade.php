@@ -43,10 +43,10 @@
 						<label class="col-sm-3 control-label">Status</label>
 						
 						<div class="col-sm-5">
-							<select name="status" class="form-control">
-								<option value="User">User</option>
-								<option value="Admin">Admin</option>
-								<option value="Pimpinan">Pimpinan</option>
+							<select name="id_role" class="form-control">
+								<option value="3">User</option>
+								<option value="1">Admin</option>
+								<option value="2">Pimpinan</option>
 							</select>
 						</div>
 					</div>

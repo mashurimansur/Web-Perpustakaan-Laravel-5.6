@@ -19,7 +19,7 @@ class CheckStatus
 
         $user = User::find($userID);
 
-        if ($user->status == 'User') {
+        if ($user->id_role == 3) {
             return redirect()->route('home');
         } 
 

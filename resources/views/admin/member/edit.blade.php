@@ -44,15 +44,20 @@
 						<label class="col-sm-3 control-label">Status</label>
 						
 						<div class="col-sm-5">
-							<select name="status" class="form-control">
-								<?php
-									$status = ['User', 'Admin', 'Pimpinan'];
-									for ($i=0; $i < count($status); $i++) {
-								?>
-								<option value="{{ $status[$i] }}" {{ $status[$i] == $member->status ? 'selected' : '' }}>{{ $status[$i] }}</option>
-								<?php
-									}
-								?>
+							<select name="id_role" class="form-control">
+								@if ($member->id_role == 1)
+									<option value="1" selected>Admin</option>
+									<option value="2">Pimpinan</option>
+									<option value="3">User</option>
+								@elseif ($member->id_role == 2)
+									<option value="1">Admin</option>
+									<option value="2" selected>Pimpinan</option>
+									<option value="3">User</option>
+								@else
+									<option value="1">Admin</option>
+									<option value="2">Pimpinan</option>
+									<option value="3" selected>User</option>
+								@endif
 							</select>
 						</div>
 					</div>

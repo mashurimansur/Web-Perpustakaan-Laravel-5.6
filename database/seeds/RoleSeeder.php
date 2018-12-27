@@ -15,7 +15,6 @@ class RoleSeeder extends Seeder
             [
                 'id' => 1,
                 'nama_role' => 'Admin',
-                'uuid' => (string)\Illuminate\Support\Str::uuid(),
                 'permissions' => json_encode([
                     'admin'=> true,
                     
@@ -24,7 +23,6 @@ class RoleSeeder extends Seeder
             [
                 'id' => 2,
                 'nama_role' => 'Pimpinan',
-                'uuid' => (string)\Illuminate\Support\Str::uuid(),
                 'permissions' => json_encode([
                     'admin'=> true,
                 ])
@@ -32,7 +30,6 @@ class RoleSeeder extends Seeder
             [
                 'id' => 3,
                 'nama_role' => 'User',
-                'uuid' => (string)\Illuminate\Support\Str::uuid(),
                 'permissions' => json_encode([
                     'setting'=> true,
                     'transaksi' => true,

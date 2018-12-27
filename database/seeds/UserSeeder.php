@@ -15,25 +15,25 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email' => 'admin@mail.com',
-                'status' => 'Admin',
+                'id_role' => 1,
                 'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
                 'image' => 'user.png'
             ],[
                 'name' => 'User',
                 'email' => 'user@mail.com',
-                'status' => 'User',
+                'id_role' => 3,
                 'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
                 'image' => 'user.png'
             ],[
                 'name' => 'Pimpinan',
                 'email' => 'pimpinan@mail.com',
-                'status' => 'Pimpinan',
+                'id_role' => 2,
                 'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
                 'image' => 'user.png'
             ],
         ];
 
-        App\User::insert($user);
+        App\Models\User::insert($user);
         
     }
 }

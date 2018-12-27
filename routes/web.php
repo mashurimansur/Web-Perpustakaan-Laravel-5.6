@@ -27,23 +27,23 @@ Route::group(['namespace' => 'Front'], function () {
 		Route::group(['prefix' => '/'], function(){
 			Route::get('/', 'HomeController@index')->name('home');
 			Route::get('/pinjam/{id?}', 'HomeController@pinjam')->name('home_pinjam');
-			Route::get('/transaksi', 'HomeController@transaksi')->name('home_transaksi')->middleware('can:user');
-			Route::post('/pengembalian', 'HomeController@pengembalian')->name('home_pengembalian')->middleware('can:user');
+			Route::get('/transaksi', 'HomeController@transaksi')->name('home_transaksi')->middleware('can:transaksi');
+			Route::post('/pengembalian', 'HomeController@pengembalian')->name('home_pengembalian')->middleware('can:transaksi');
 			Route::get('/list', 'HomeController@daftarbuku')->name('home_daftarbuku');
 			Route::get('/detail/{id?}', 'HomeController@detailbuku')->name('home_detailbuku');
 			Route::get('/jenis/{jenis_buku?}', 'HomeController@jenis')->name('home_jenis');
 			Route::get('/pencarian', 'HomeController@pencarian')->name('home_pencarian');
-			Route::get('/setting', 'HomeController@setting')->name('home_setting')->middleware('can:user');
-			Route::post('/setting', 'HomeController@settingStore')->name('home_setting_store')->middleware('can:user');
+			Route::get('/setting', 'HomeController@setting')->name('home_setting')->middleware('can:setting');
+			Route::post('/setting', 'HomeController@settingStore')->name('home_setting_store')->middleware('can:setting');
 		});
 	});
 });
 
 //Admin
-Route::group(['namespace' => 'Admin', 'middleware' => 'can:admin'], function () {
+Route::group(['namespace' => 'Admin', 'middleware' => CheckStatus::class], function () {
 	//Admin
 	// Route::group(['prefix' => 'admin', 'middleware' => CheckStatus::class], function(){
-	Route::group(['prefix' => 'admin'], function(){
+	Route::group(['prefix' => 'admin', 'middleware' => 'can:admin'], function(){
 		//Dashboard
 		Route::group(['prefix' => '/'], function(){
 			Route::get('/', 'DashboardController@index')->name('dashboard');
