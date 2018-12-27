@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-use App\User;
+use App\Models\User;
 use Closure;
 
 class CheckStatus

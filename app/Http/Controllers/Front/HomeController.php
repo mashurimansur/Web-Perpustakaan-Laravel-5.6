@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Front;
 use App\Models\Buku;
 use App\Models\Transaksi;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB, Auth;

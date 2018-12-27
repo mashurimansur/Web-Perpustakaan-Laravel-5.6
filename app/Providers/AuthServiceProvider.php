@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\User;
+use App\Models\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -37,8 +37,8 @@ class AuthServiceProvider extends ServiceProvider
             } else {
                 return abort(404);
             }
-            // return $user->id_role->permissions->hasAccess(['admin']);
         });
+
         Gate::define('user', function($user){
             if ($user->id_role == 3) {
                 return true;
