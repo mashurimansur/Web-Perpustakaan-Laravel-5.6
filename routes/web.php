@@ -27,28 +27,29 @@ Route::group(['namespace' => 'Front'], function () {
 		Route::group(['prefix' => '/'], function(){
 			Route::get('/', 'HomeController@index')->name('home');
 			Route::get('/pinjam/{id?}', 'HomeController@pinjam')->name('home_pinjam');
-			Route::get('/transaksi', 'HomeController@transaksi')->name('home_transaksi');
-			Route::post('/pengembalian', 'HomeController@pengembalian')->name('home_pengembalian');
+			Route::get('/transaksi', 'HomeController@transaksi')->name('home_transaksi')->middleware('can:user');
+			Route::post('/pengembalian', 'HomeController@pengembalian')->name('home_pengembalian')->middleware('can:user');
 			Route::get('/list', 'HomeController@daftarbuku')->name('home_daftarbuku');
 			Route::get('/detail/{id?}', 'HomeController@detailbuku')->name('home_detailbuku');
 			Route::get('/jenis/{jenis_buku?}', 'HomeController@jenis')->name('home_jenis');
 			Route::get('/pencarian', 'HomeController@pencarian')->name('home_pencarian');
-			Route::get('/setting', 'HomeController@setting')->name('home_setting');
-			Route::post('/setting', 'HomeController@settingStore')->name('home_setting_store');
+			Route::get('/setting', 'HomeController@setting')->name('home_setting')->middleware('can:user');
+			Route::post('/setting', 'HomeController@settingStore')->name('home_setting_store')->middleware('can:user');
 		});
 	});
 });
 
 //Admin
-Route::group(['namespace' => 'Admin'], function () {
+Route::group(['namespace' => 'Admin', 'middleware' => 'can:admin'], function () {
 	//Admin
-	Route::group(['prefix' => 'admin', 'middleware' => CheckStatus::class], function(){
+	// Route::group(['prefix' => 'admin', 'middleware' => CheckStatus::class], function(){
+	Route::group(['prefix' => 'admin'], function(){
 		//Dashboard
 		Route::group(['prefix' => '/'], function(){
 			Route::get('/', 'DashboardController@index')->name('dashboard');
 		});
 
-		//Buku
+		//Buku	
 		Route::group(['prefix' => 'buku'], function(){
 			Route::get('/', 'BukuController@index')->name('buku');
 			Route::get('/create', 'BukuController@create')->name('buku_create');
