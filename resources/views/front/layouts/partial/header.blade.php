@@ -45,11 +45,13 @@
 							</ul>
 						</li>
 						@if(Auth::check())
-							<li class="{{ $_SERVER['REQUEST_URI'] == '/transaksi' ? 'active' : '' }}">
-								<a href="{{ route('home_transaksi') }}">
-									<span>Buku yang di Pinjam</span>
-								</a>
-							</li>
+							@if (Auth::user()->id_role == 3)
+								<li class="{{ $_SERVER['REQUEST_URI'] == '/transaksi' ? 'active' : '' }}">
+									<a href="{{ route('home_transaksi') }}">
+										<span>Buku yang di Pinjam</span>
+									</a>
+								</li>
+							@endif
 						@endif
 
 						@if(!Auth::check())
@@ -67,11 +69,13 @@
 								</a>
 								
 								<ul>
-									<li>
-										<a href="{{ route('home_setting') }}">
-											<span>Setting</span>
-										</a>
-									</li>
+									@if (Auth::user()->id_role == 3)
+										<li>
+											<a href="{{ route('home_setting') }}">
+												<span>Setting</span>
+											</a>
+										</li>
+									@endif
 									<li>
 										<a href="{{ route('logout') }}"
 							                onclick="event.preventDefault();

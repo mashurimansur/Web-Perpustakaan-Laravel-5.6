@@ -30,7 +30,7 @@ Route::group(['namespace' => 'Front'], function () {
 			Route::get('/transaksi', 'HomeController@transaksi')->name('home_transaksi')->middleware('can:user_transaksi');
 			Route::post('/pengembalian', 'HomeController@pengembalian')->name('home_pengembalian')->middleware('can:user_transaksi');
 			Route::get('/list', 'HomeController@daftarbuku')->name('home_daftarbuku');
-			Route::get('/detail/{id?}', 'HomeController@detailbuku')->name('home_detailbuku');
+			Route::get('/list/detail/{id?}', 'HomeController@detailbuku')->name('home_detailbuku');
 			Route::get('/jenis/{jenis_buku?}', 'HomeController@jenis')->name('home_jenis');
 			Route::get('/pencarian', 'HomeController@pencarian')->name('home_pencarian');
 			Route::get('/setting', 'HomeController@setting')->name('home_setting')->middleware('can:user_setting');
@@ -42,7 +42,6 @@ Route::group(['namespace' => 'Front'], function () {
 //Admin
 Route::group(['namespace' => 'Admin', 'middleware' => CheckStatus::class], function () {
 	//Admin
-	// Route::group(['prefix' => 'admin', 'middleware' => CheckStatus::class], function(){
 	Route::group(['prefix' => 'admin'], function(){
 		//Dashboard
 		Route::group(['prefix' => '/', 'middleware' => 'can:admin_dashboard'], function(){

@@ -36,7 +36,7 @@ class RoleSeeder extends Seeder
                 'nama_role' => 'User',
                 'permissions' => json_encode([
                     'user_setting'=> true,
-                    'User_transaksi' => true,
+                    'user_transaksi' => true,
                 ])
             ],
         ];

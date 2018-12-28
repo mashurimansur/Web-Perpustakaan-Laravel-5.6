@@ -57,14 +57,17 @@
 							<td>{{ $buku->stok }}</td>
 						</tr>
 					</table>
-					
-					@if (count($check) > 0)
-						<button disabled="disabled" class="btn btn-danger">Buku sudah dipinjam</button>
-					@else
-						<a href="{{ route('home_pinjam', ['id' => $buku->id]) }}" class="btn btn-primary">Pinjam Buku</a>
+					@if (Auth::check())
+						@if (Auth::user()->id_role == 3)
+							@if (count($check) > 0)
+							<button disabled="disabled" class="btn btn-danger">Buku sudah dipinjam</button>
+							@else
+							<a href="{{ route('home_pinjam', ['id' => $buku->id]) }}" class="btn btn-primary">Pinjam Buku</a>
+							@endif
+						@endif
 					@endif
 				</div>
 			</div>
-		</div>
+		</div>	
 	</section>
 @endsection
