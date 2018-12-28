@@ -31,32 +31,28 @@ class AuthServiceProvider extends ServiceProvider
     }
 
     public function registerRole(){
-        Gate::define('admin', function($user){
-            return $user->hasAccess(['admin']);
+        Gate::define('admin_dashboard', function($user){
+            return $user->hasAccess(['admin_dashboard']);
         });
 
-        Gate::define('transaksi', function($user){
-            return $user->hasAccess(['transaksi']);
+        Gate::define('admin_buku', function($user){
+            return $user->hasAccess(['admin_buku']);
         });
 
-        Gate::define('setting', function($user){
-            return $user->hasAccess(['setting']);
+        Gate::define('admin_transaksi', function($user){
+            return $user->hasAccess(['admin_transaksi']);
         });
 
-        // Gate::define('admin', function($user){
-        //     if ($user->id_role == 1) {
-        //         return true;
-        //     } else {
-        //         return abort(404);
-        //     }
-        // });
+        Gate::define('admin_member', function($user){
+            return $user->hasAccess(['admin_member']);
+        });
 
-        // Gate::define('user', function($user){
-        //     if ($user->id_role == 3) {
-        //         return true;
-        //     } else {
-        //         return abort(404);
-        //     };
-        // });
+        Gate::define('user_transaksi', function($user){
+            return $user->hasAccess(['user_transaksi']);
+        });
+
+        Gate::define('user_setting', function($user){
+            return $user->hasAccess(['user_setting']);
+        });
     }
 }

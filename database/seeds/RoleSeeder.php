@@ -16,7 +16,10 @@ class RoleSeeder extends Seeder
                 'id' => 1,
                 'nama_role' => 'Admin',
                 'permissions' => json_encode([
-                    'admin'=> true,
+                    'admin_dashboard'=> true,
+                    'admin_buku'=> true,
+                    'admin_transaksi'=> true,
+                    'admin_member'=> true,
                     
                 ])
             ],
@@ -24,15 +27,16 @@ class RoleSeeder extends Seeder
                 'id' => 2,
                 'nama_role' => 'Pimpinan',
                 'permissions' => json_encode([
-                    'admin'=> true,
+                    'admin_dashboard'=> true,
+                    'admin_transaksi'=> true,
                 ])
             ],
             [
                 'id' => 3,
                 'nama_role' => 'User',
                 'permissions' => json_encode([
-                    'setting'=> true,
-                    'transaksi' => true,
+                    'user_setting'=> true,
+                    'User_transaksi' => true,
                 ])
             ],
         ];
