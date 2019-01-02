@@ -13,8 +13,14 @@ class BukuController extends Controller
         $this->middleware('auth');
     }
     
-    public function index()
+    public function index(Request $r)
     {
+		$search = $r->input('search');
+		if ($search) {
+			$data['buku'] = Buku::where('judul', 'like', '%'.$search.'%')->orWhere('jenis', 'like', '%'.$search.'%')->paginate();
+			return view('admin.buku.index', $data);
+		}
+
     	$data['buku'] = Buku::paginate(20);
 
     	return view('admin.buku.index', $data);

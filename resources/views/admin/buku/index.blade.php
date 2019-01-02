@@ -15,7 +15,18 @@
 	<h2>List Buku</h2>
 
 	<br />
-	<a href="{{ route('buku_create') }}" class="btn btn-primary">Tambah Data</a>
+	<div class="row">
+		<div class="col-md-8">
+			<a href="{{ route('buku_create') }}" class="btn btn-primary">Tambah Data</a>
+		</div>
+		<div class="col-md-4">
+			<form class="form-inline" method="get">
+				<input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
+				<button class="btn btn-primary btn-rounded btn-sm" type="submit">Search</button>
+			</form>
+		</div>
+	</div>
+		
 	<br>
 	<br>
 	<table class="table table-bordered datatable" id="table-1">
