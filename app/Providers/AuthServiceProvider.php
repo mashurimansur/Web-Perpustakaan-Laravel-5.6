@@ -34,23 +34,18 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('admin_dashboard', function($user){
             return $user->hasAccess(['admin_dashboard']);
         });
-
         Gate::define('admin_buku', function($user){
             return $user->hasAccess(['admin_buku']);
         });
-
         Gate::define('admin_transaksi', function($user){
             return $user->hasAccess(['admin_transaksi']);
         });
-
         Gate::define('admin_member', function($user){
             return $user->hasAccess(['admin_member']);
         });
-
         Gate::define('user_transaksi', function($user){
             return $user->hasAccess(['user_transaksi']);
         });
-
         Gate::define('user_setting', function($user){
             return $user->hasAccess(['user_setting']);
         });

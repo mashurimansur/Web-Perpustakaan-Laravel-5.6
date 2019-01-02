@@ -23,7 +23,7 @@ class BukuController extends Controller
     public function create()
     {
         // jenis
-        $jenis = DB::table('buku')->select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
+        $jenis = Buku::select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
         $data['jenis'] = $jenis;
 
     	return view('admin.buku.create', $data);
@@ -31,14 +31,18 @@ class BukuController extends Controller
 
     public function store(Request $r)
     {
-    	$buku = new Buku;
-    	$buku->isbn = $r->isbn;
-    	$buku->judul = $r->judul;
-    	$buku->jenis = $r->jenis;
-    	$buku->pengarang = $r->pengarang;
-    	$buku->penerbit = $r->penerbit;
-    	$buku->tahun = $r->tahun;
-    	$buku->stok = $r->stok;
+		$this->validate($r, [
+			'isbn' => 'required',
+			'judul' => 'required',
+			'jenis' => 'required',
+			'pengarang' => 'required',
+			'penerbit' => 'required',
+			'tahun' => 'required',
+			'stok' => 'required',
+			'image' => 'image',
+		]);
+
+		$input = $r->input();
 
     	//Upload File
     	$uploadedFile = $r->file('image');
@@ -46,10 +50,9 @@ class BukuController extends Controller
 		$nm_file = rand(111111,999999).".".$ext;
 		$destinationPath = public_path('uploaded/buku');
 		$upload = $uploadedFile->move($destinationPath, $nm_file);
-    	$buku->image = $nm_file;
+    	$input['image'] = $nm_file;
 
-    	$buku->save();
-
+    	$buku = Buku::create($input);
 
     	return redirect()->route('buku');
     }
@@ -59,7 +62,7 @@ class BukuController extends Controller
     	$data['buku'] = Buku::find($id);
 
         // jenis
-        $jenis = DB::table('buku')->select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
+        $jenis = Buku::select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
         $data['jenis'] = $jenis;
 
     	return view('admin.buku.edit', $data);
@@ -67,14 +70,20 @@ class BukuController extends Controller
 
     public function update(Request $r, $id)
     {
+		$this->validate($r, [
+			'isbn' => 'required',
+			'judul' => 'required',
+			'jenis' => 'required',
+			'pengarang' => 'required',
+			'penerbit' => 'required',
+			'tahun' => 'required',
+			'stok' => 'required',
+			'image' => 'image',
+		]);
+
+		$input = $r->input();
+
     	$buku = Buku::find($id);
-    	$buku->isbn = $r->isbn;
-    	$buku->judul = $r->judul;
-    	$buku->jenis = $r->jenis;
-    	$buku->pengarang = $r->pengarang;
-    	$buku->penerbit = $r->penerbit;
-    	$buku->tahun = $r->tahun;
-    	$buku->stok = $r->stok;
 
 	    //Upload File
     	if ($r->hasFile('image')) {
@@ -83,10 +92,10 @@ class BukuController extends Controller
 			$nm_file = rand(111111,999999).".".$ext;
 			$destinationPath = public_path('uploaded/buku');
 			$upload = $uploadedFile->move($destinationPath, $nm_file);
-	    	$buku->image = $nm_file;
+	    	$input['image'] = $nm_file;
     	}
 
-    	$buku->save();
+    	$buku->update($input);
 
     	return redirect()->route('buku');
     }

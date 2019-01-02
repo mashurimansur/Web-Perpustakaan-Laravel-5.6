@@ -26,21 +26,28 @@ class MemberController extends Controller
 
     public function store(Request $r)
     {
-    	$buku = new User;
-    	$buku->name = $r->name;
-    	$buku->email = $r->email;
-    	$buku->id_role = $r->id_role;
-    	$buku->password = bcrypt($r->password);
+		$this->validate($r, [
+			'name' => 'required',
+			'email' => 'required|email',
+			'id_role' => 'required',
+			'password' => 'required',
+			'image' => 'image',
+		]);
 
-    	//Upload File
-    	$uploadedFile = $r->file('image');
-    	$ext = $uploadedFile->getClientOriginalExtension();
-		$nm_file = rand(111111,999999).".".$ext;
-		$destinationPath = public_path('uploaded/member');
-		$upload = $uploadedFile->move($destinationPath, $nm_file);
-    	$buku->image = $nm_file;
+		$input = $r->input();
+		
+		//Upload Gambar
+		if ($r->hasFile('image')) {
+			$uploadedFile = $r->file('image');
+			$ext = $uploadedFile->getClientOriginalExtension();
+			$nm_file = rand(111111,999999).".".$ext;
+			$destinationPath = public_path('uploaded/member');
+			$upload = $uploadedFile->move($destinationPath, $nm_file);
+		}
 
-    	$buku->save();
+		$input['image'] = $nm_file;
+		$input['password'] = bcrypt($r->password);
+		$member = User::create($input);
 
     	return redirect()->route('member');
     }
@@ -54,15 +61,24 @@ class MemberController extends Controller
 
     public function update(Request $r, $id)
     {
-    	$buku = User::find($id);
-    	$buku->name = $r->name;
-    	$buku->email = $r->email;
-    	$buku->id_role = $r->id_role;
 
-    	if ($r->password != NULL) {
-    		$buku->password = bcrypt($r->password);
-    	}
+		$this->validate($r, [
+			'name' => 'required',
+			'email' => 'required|email',
+			'id_role' => 'required',
+		]);
 
+		$input = $r->input();
+
+		$member = User::find($id);
+		
+		
+		if ($r->password) {
+			$input['password'] = bcrypt($r->password);
+		} else {
+			$input['password'] = $member->password;
+		}
+		
 	    //Upload File
     	if ($r->hasFile('image')) {
 	    	$uploadedFile = $r->file('image');
@@ -70,10 +86,10 @@ class MemberController extends Controller
 			$nm_file = rand(111111,999999).".".$ext;
 			$destinationPath = public_path('uploaded/member');
 			$upload = $uploadedFile->move($destinationPath, $nm_file);
-	    	$buku->image = $nm_file;
-    	}
-
-    	$buku->save();
+			$input['image'] = $nm_file;
+		}
+		
+		$member->update($input);
 
     	return redirect()->route('member');
     }
