@@ -32,6 +32,7 @@
 	<!-- Javascript Libraries -->
 	@include('admin.layouts.partial.script')
 
+	@yield('modal')	
 	@yield('registerscript')	
 
 </body>
