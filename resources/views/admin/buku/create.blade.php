@@ -48,16 +48,15 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Jenis Buku</label>
+						<label class="col-sm-3 control-label">Kategori Buku</label>
 						
 						<div class="col-sm-5">
-							<input list="jenis" name="jenis" class="form-control">
-
-							<datalist id="jenis">
-								@foreach($jenis as $j)
-								<option value="{{ $j->jenis }}">
+							<select name="id_kategori" class="form-control">
+								<option value="">-- Pilih Kategori --</option>
+								@foreach ($kategori as $k)
+								<option value="{{ $k->id }}">{{ $k->kategori }}</option>
 								@endforeach
-							</datalist>
+							</select>
 						</div>
 					</div>
 

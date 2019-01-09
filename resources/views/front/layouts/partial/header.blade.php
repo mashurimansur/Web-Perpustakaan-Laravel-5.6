@@ -35,10 +35,10 @@
 							</a>
 							
 							<ul>
-								@foreach($jenis as $j)
-									<li {{ Request::is('/jenis/$j->jenis*') ? 'class=active' : '' }}>
-										<a href="{{ route('home_jenis', ['jenis_buku' => $j->jenis]) }}">
-											<span>{{ $j->jenis }} ({{ $j->count }})</span>
+								@foreach($kategori as $k)
+									<li {{ Request::is('/kategori/$k->kategori*') ? 'class=active' : '' }}>
+										<a href="{{ route('home_jenis', ['jenis_buku' => $k->kategori]) }}">
+											<span>{{ $k->kategori }} ({{ DB::table('buku')->where('id_kategori', $k->id)->count() }})</span>
 										</a>
 									</li>
 								@endforeach

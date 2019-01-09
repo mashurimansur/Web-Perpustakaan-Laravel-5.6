@@ -53,13 +53,11 @@
 						<label class="col-sm-3 control-label">Jenis Buku</label>
 						
 						<div class="col-sm-5">
-							<input list="jenis" name="jenis" class="form-control" value="{{ $buku->jenis }}">
-
-							<datalist id="jenis">
-								@foreach($jenis as $j)
-								<option value="{{ $j->jenis }}">
+							<select name="id_kategori" class="form-control">
+								@foreach ($kategori as $k)
+								<option value="{{ $k->id }}" {{ ($buku->id_kategori == $k->id) ? 'selected' : '' }}>{{ $k->kategori }}</option>
 								@endforeach
-							</datalist>
+							</select>
 						</div>
 					</div>
 

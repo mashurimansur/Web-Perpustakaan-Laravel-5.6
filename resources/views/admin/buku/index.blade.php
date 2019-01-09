@@ -21,7 +21,7 @@
 		</div>
 		<div class="col-md-4">
 			<form class="form-inline" method="get">
-				<input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
+				<input class="form-control" name="search" type="text" value="{{ $search }}" placeholder="Search" aria-label="Search">
 				<button class="btn btn-primary btn-rounded btn-sm" type="submit">Search</button>
 			</form>
 		</div>
@@ -34,7 +34,7 @@
 			<tr>
 				<th>ISBN</th>
 				<th>Judul Buku</th>
-				<th>Jenis Buku</th>
+				<th>Kategori Buku</th>
 				<th>Nama Pengarang</th>
 				<th>Penerbit</th>
 				<th>Tahun Terbit</th>
@@ -48,7 +48,7 @@
 				<tr class="odd gradeX">
 					<td>{{ $b->isbn }}</td>
 					<td>{{ $b->judul }}</td>
-					<td>{{ $b->jenis }}</td>
+					<td>{{ $b->kategori->kategori }}</td>
 					<td>{{ $b->pengarang }}</td>
 					<td>{{ $b->penerbit }}</td>
 					<td>{{ $b->tahun }}</td>
@@ -57,14 +57,14 @@
 						<a href="{{ route('buku_edit', ['id' => $b->id]) }}" class="btn btn-success">Edit</a>
 					</td>
 					<td width="10px">
-						{{-- <button class="btn btn-danger" data-toggle="modal" data-target="#modal-delete" data-id="{{ $b->id }}">Delete</button> --}}
+						<button class="btn btn-danger" data-toggle="modal" data-target="#modal-delete" data-id="{{ $b->id }}">Delete</button>
 						
-						<form action="{{ route('buku_delete') }}" method="post">
+						{{-- <form action="{{ route('buku_delete') }}" method="post">
 							{{ csrf_field() }}
 
 							<input type="hidden" name="id" value="{{ $b->id }}">
 							<button type="submit" class="btn btn-danger">Hapus</button>
-						</form>
+						</form> --}}
 					</td>
 				</tr>
 				@endforeach

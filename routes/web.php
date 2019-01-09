@@ -31,7 +31,7 @@ Route::group(['namespace' => 'Front'], function () {
 			Route::post('/pengembalian', 'HomeController@pengembalian')->name('home_pengembalian')->middleware('can:user_transaksi');
 			Route::get('/list', 'HomeController@daftarbuku')->name('home_daftarbuku');
 			Route::get('/list/detail/{id?}', 'HomeController@detailbuku')->name('home_detailbuku');
-			Route::get('/jenis/{jenis_buku?}', 'HomeController@jenis')->name('home_jenis');
+			Route::get('/kategori/{jenis_buku?}', 'HomeController@jenis')->name('home_jenis');
 			Route::get('/pencarian', 'HomeController@pencarian')->name('home_pencarian');
 			Route::get('/setting', 'HomeController@setting')->name('home_setting')->middleware('can:user_setting');
 			Route::post('/setting', 'HomeController@settingStore')->name('home_setting_store')->middleware('can:user_setting');
@@ -56,6 +56,16 @@ Route::group(['namespace' => 'Admin', 'middleware' => CheckStatus::class], funct
 			Route::get('/edit/{id?}', 'BukuController@edit')->name('buku_edit');
 			Route::put('/update/{id?}', 'BukuController@update')->name('buku_update');
 			Route::post('/delete', 'BukuController@delete')->name('buku_delete');
+		});
+
+		//Kategori	
+		Route::group(['prefix' => 'kategori', 'middleware' => 'can:admin_buku'], function(){
+			Route::get('/', 'KategoriController@index')->name('kategori');
+			Route::get('/create', 'KategoriController@create')->name('kategori_create');
+			Route::post('/store', 'KategoriController@store')->name('kategori_store');
+			Route::get('/edit/{id?}', 'KategoriController@edit')->name('kategori_edit');
+			Route::put('/update/{id?}', 'KategoriController@update')->name('kategori_update');
+			Route::post('/delete', 'KategoriController@delete')->name('kategori_delete');
 		});
 
 		//User

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 use App\Models\Buku;
 use App\Models\Transaksi;
+use App\Models\Kategori;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,8 +17,8 @@ class HomeController extends Controller
     	// 	return redirect()->route('dashboard');
     	// }
     	// Penting
-		$jenis = DB::table('buku')->select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
-		$data['jenis'] = $jenis;
+		$data['kategori'] = Kategori::orderBy('kategori')->get();
+		
 		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
 
     	$data['buku'] = Buku::where('stok', '>', 0)->limit(6)->get();
@@ -56,8 +57,8 @@ class HomeController extends Controller
     public function transaksi()
     {
     	// Penting
-		$jenis = DB::table('buku')->select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
-		$data['jenis'] = $jenis;
+		$data['kategori'] = Kategori::orderBy('kategori')->get();
+
 		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
 
 		$data['transaksi'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->with('buku', 'user')->get();
@@ -82,8 +83,8 @@ class HomeController extends Controller
     public function daftarbuku()
     {
     	// Penting
-		$jenis = DB::table('buku')->select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
-		$data['jenis'] = $jenis;
+		$data['kategori'] = Kategori::orderBy('kategori')->get();
+
 		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
 
     	$data['buku'] = Buku::where('stok', '>', 0)->paginate(12);
@@ -93,12 +94,13 @@ class HomeController extends Controller
 
     public function jenis($jenis_buku)
     {
-    	// Penting
-		$jenis = DB::table('buku')->select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
-		$data['jenis'] = $jenis;
+		// Penting
+		$data['kategori'] = Kategori::orderBy('kategori')->get();
 		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
 
-    	$data['buku'] = Buku::where('jenis', $jenis_buku)->paginate(12);
+		$kategori = Kategori::where('kategori', $jenis_buku)->firstOrFail();
+
+    	$data['buku'] = Buku::where('id_kategori', $kategori->id)->paginate(12);
 
     	return view('front.buku.index', $data);
     }
@@ -106,8 +108,8 @@ class HomeController extends Controller
     public function pencarian(Request $r)
     {
     	// Penting
-		$jenis = DB::table('buku')->select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
-		$data['jenis'] = $jenis;
+		$data['kategori'] = Kategori::orderBy('kategori')->get();
+
 		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
 		
 		$data['keyword'] = $r->keyword;
@@ -118,8 +120,8 @@ class HomeController extends Controller
     public function detailbuku($id)
     {
     	// Penting
-		$jenis = DB::table('buku')->select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
-		$data['jenis'] = $jenis;
+		$data['kategori'] = Kategori::orderBy('kategori')->get();
+
 		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
 
 		$data['buku'] = Buku::find($id);
@@ -132,8 +134,8 @@ class HomeController extends Controller
     public function setting()
     {
     	// Penting
-		$jenis = DB::table('buku')->select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
-		$data['jenis'] = $jenis;
+		$data['kategori'] = Kategori::orderBy('kategori')->get();
+
 		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
 
 		$data['member'] = User::find(Auth::id());

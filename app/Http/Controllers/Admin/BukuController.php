@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Models\Buku;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
@@ -17,20 +18,20 @@ class BukuController extends Controller
     {
 		$search = $r->input('search');
 		if ($search) {
-			$data['buku'] = Buku::where('judul', 'like', '%'.$search.'%')->orWhere('jenis', 'like', '%'.$search.'%')->paginate();
+			$data['search'] = $search;
+			$data['buku'] = Buku::where('judul', 'like', '%'.$search.'%')->with('kategori')->paginate();
 			return view('admin.buku.index', $data);
 		}
-
-    	$data['buku'] = Buku::paginate(20);
+		
+		$data['search'] = '';
+    	$data['buku'] = Buku::with('kategori')->paginate(20);
 
     	return view('admin.buku.index', $data);
     }
 
     public function create()
     {
-        // jenis
-        $jenis = Buku::select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
-        $data['jenis'] = $jenis;
+		$data['kategori'] = Kategori::orderBy('kategori')->get();
 
     	return view('admin.buku.create', $data);
     }
@@ -40,7 +41,7 @@ class BukuController extends Controller
 		$this->validate($r, [
 			'isbn' => 'required',
 			'judul' => 'required',
-			'jenis' => 'required',
+			'id_kategori' => 'required',
 			'pengarang' => 'required',
 			'penerbit' => 'required',
 			'tahun' => 'required',
@@ -65,11 +66,8 @@ class BukuController extends Controller
 
     public function edit($id)
     {
+		$data['kategori'] = Kategori::orderBy('kategori')->get();
     	$data['buku'] = Buku::find($id);
-
-        // jenis
-        $jenis = Buku::select('jenis', DB::raw('COUNT(jenis) as count'))->groupBy('jenis')->orderBy('jenis')->get();
-        $data['jenis'] = $jenis;
 
     	return view('admin.buku.edit', $data);
     }
@@ -79,7 +77,7 @@ class BukuController extends Controller
 		$this->validate($r, [
 			'isbn' => 'required',
 			'judul' => 'required',
-			'jenis' => 'required',
+			'id_kategori' => 'required',
 			'pengarang' => 'required',
 			'penerbit' => 'required',
 			'tahun' => 'required',
