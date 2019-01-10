@@ -7,7 +7,7 @@ use App\Models\Kategori;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB, Auth;
+use Auth;
 
 class HomeController extends Controller
 {

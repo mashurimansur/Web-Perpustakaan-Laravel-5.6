@@ -52,25 +52,12 @@
 											<td>
 												<div class="meta-info">
 													<i class="entypo-comment"></i>
-													Jenis Buku
+													Kategori Buku
 												</div>
 											</td>
 											<td>
 												<div class="meta-info">
-													<i class="entypo-book"></i> {{ $t->buku->jenis }}								
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="meta-info">
-													<i class="entypo-comment"></i>
-													Jenis Buku
-												</div>
-											</td>
-											<td>
-												<div class="meta-info">
-													<i class="entypo-book"></i> {{ $t->buku->jenis }}								
+													<i class="entypo-book"></i> {{ $t->buku->kategori->kategori }}								
 												</div>
 											</td>
 										</tr>
