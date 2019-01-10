@@ -13,14 +13,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-    	// if (!Auth::check()) {
-    	// 	return redirect()->route('dashboard');
-    	// }
     	// Penting
 		$data['kategori'] = Kategori::orderBy('kategori')->get();
 		
-		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
-
     	$data['buku'] = Buku::where('stok', '>', 0)->limit(6)->get();
 
     	return view('front.home.index', $data);
@@ -59,11 +54,8 @@ class HomeController extends Controller
     	// Penting
 		$data['kategori'] = Kategori::orderBy('kategori')->get();
 
-		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
-
 		$data['transaksi'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->with('buku', 'user')->get();
 
-		// return response($data);
     	return view('front.transaksi.index', $data);
     }
  
@@ -85,9 +77,7 @@ class HomeController extends Controller
     	// Penting
 		$data['kategori'] = Kategori::orderBy('kategori')->get();
 
-		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
-
-    	$data['buku'] = Buku::where('stok', '>', 0)->paginate(12);
+    	$data['buku'] = Buku::where('stok', '>', 0)->with('kategori')->paginate(12);
 
     	return view('front.buku.index', $data);
     }
@@ -96,8 +86,6 @@ class HomeController extends Controller
     {
 		// Penting
 		$data['kategori'] = Kategori::orderBy('kategori')->get();
-		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
-
 		$kategori = Kategori::where('kategori', $jenis_buku)->firstOrFail();
 
     	$data['buku'] = Buku::where('id_kategori', $kategori->id)->paginate(12);
@@ -110,8 +98,6 @@ class HomeController extends Controller
     	// Penting
 		$data['kategori'] = Kategori::orderBy('kategori')->get();
 
-		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
-		
 		$data['keyword'] = $r->keyword;
 		$data['buku'] = Buku::where('judul', 'LIKE', '%'.$r->keyword.'%')->paginate(12);
     	return view('front.buku.search', $data);
@@ -121,8 +107,6 @@ class HomeController extends Controller
     {
     	// Penting
 		$data['kategori'] = Kategori::orderBy('kategori')->get();
-
-		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
 
 		$data['buku'] = Buku::find($id);
 
@@ -135,8 +119,6 @@ class HomeController extends Controller
     {
     	// Penting
 		$data['kategori'] = Kategori::orderBy('kategori')->get();
-
-		// $data['count'] = Transaksi::where('id_user', Auth::user()->id)->where('tgl_kembali', 'Masih dipinjam')->count();
 
 		$data['member'] = User::find(Auth::id());
 

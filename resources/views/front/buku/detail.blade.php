@@ -45,8 +45,8 @@
 							<td>{{ $buku->penerbit }}</td>
 						</tr>
 						<tr>
-							<td style="font-weight: bold;">Jenis Buku</td>
-							<td>{{ $buku->jenis }}</td>
+							<td style="font-weight: bold;">Kategori Buku</td>
+							<td>{{ $buku->kategori->kategori }}</td>
 						</tr>
 						<tr>
 							<td style="font-weight: bold;">Tahun Terbit</td>
