@@ -35,3 +35,12 @@ $factory->define(App\Models\Buku::class,function (Faker $faker){
         'image' => 'cover.png'
     ];
 });
+
+$factory->define(App\Models\Transaksi::class,function (Faker $faker){
+    return [
+        'id_buku' => rand(1, 50),
+        'id_user' => rand(3, 10),
+        'tgl_pinjam' => date('Y-m-d H:i:s'),
+        'tgl_kembali' => 'Masih dipinjam'
+    ];
+});
